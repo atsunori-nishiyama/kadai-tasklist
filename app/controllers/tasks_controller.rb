@@ -54,8 +54,9 @@ class TasksController < ApplicationController
   
   def set_task
     @task = current_user.tasks.find_by(id: params[:id])
-    flash[:danger] = '操作が出来ませんでした'
-    redirect_to root_url
+    unless @task
+    redirect_to @task
+    end
   end
   
   def task_params
