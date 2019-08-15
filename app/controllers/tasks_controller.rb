@@ -52,9 +52,11 @@ class TasksController < ApplicationController
   private
   
   def set_task
+    if logged_in?
     @task = current_user.tasks.find_by(id: params[:id])
     unless @task
-    redirect_back(fallback_location: root_url)
+    redirect_to root_url
+    end
     end
   end
   
